@@ -1,0 +1,117 @@
+1. The Reaching point
+You are given a 2-dimensional matrix in the form of a grid containing integers. Dimensions of the matrix are N*M with N rows and M columns. If you are standing at a cell (X,Y), then you can jump from that cell to any adjacent cell within the boundaries of the grid. For example, you can move to the following places from (X,Y):
+
+To the cell (X+1,Y), if X+1<=N and Y<=M
+To the cell (X,Y+1), if X<=N and Y+1<=M
+To the cell (X-1,Y), if X-1>=1 and Y<=M
+To the cell (X,Y-1), if X<=N and Y-1>=1
+You can also jump from current cell C to another cell A if the value in cell A divides the value in cell C. In other words, you can jump from a cell to its divisors containing cells.
+
+Task
+
+Answer Q queries and each query consist of two cells u and v. Determine whether you can reach from u to v in atmost 4 jumps. Print YES if it is possible else, print NO.
+
+Example
+
+Assumptions
+
+N=3
+M=6
+The grid is given with values as shown:
+
+2 3 25 9 7 50
+
+3 11 10 12 33 6
+
+5 20 1 8 15 36
+
+The top row number can be taken as 1 and increasing down to N.
+
+Left column number can be taken as 1 and increasing right to M.
+
+Approach
+
+Suppose Q=3
+
+u=(3,6), v=(1,1). You are currently standing at (3,6) cell containing the value 36. You can take the following jumps. From (3,6) to (2,4) as 36 is divisible by 12.From (2,4) to (1,1) as 12 is divisible by 2.Hence, you can jump from u to v in less than 4 jumps. Therefore, the answer is YES.
+
+u=(1,6), v=(3,3). You are currently standing at (1,6) cell containing the value 50. You can take the following jumps: From (1,6) to (2,3) as 50 is divisible by 10.From (2,3) to (3,1) as 10 is divisible by 5.From (3,1) to (3,3) as 5 is divisible by 1.Hence, you can jump from u to v in less than 4 jumps. Therefore, the answer is YES.
+
+You could also have gone from (1,6) to (2,6) by adjacent jumping and then from (2,6) to (3,3) as divisor jumping.
+
+u-(3,1), v=(1,5). You are currently standing at (3,1) cell containing the value 5. You cannot manage to jump to cell(1,5) in atmost 4 jumps. Hence, the answer is NO.
+
+Function description
+
+Complete the CanReach function provided in the editor. This function takes the following 7 parameters and returns the string YES or NO for each query:
+
+Grid: Represents the 2-D matrix array
+x1: Represents the row number of starting cell for a query
+y1: Represents the column number of starting cell for a query
+x2: Represents the row number of ending cell for a query
+y2: Represents the column number of the ending cell for a query
+N: Represents the number of rows
+M: Represents the number of columns
+Input format
+
+Note: This is the input format that you must use to provide custom input.
+
+The first line contains a single integer N which denotes the number of rows.
+The second line contains a single integer M which denotes the number of columns.
+The next N lines contain M space-separated integers representing the grid.
+The next line contains a single integer ! which denotes the number of queries.
+The next Q lines contain 4 space separated integers x1,y1,x2,y2 where (x1,y1) represents initial co-ordinate and (x2,y2) represents the final co-ordinate.
+Output format
+
+For each query, Print a string "YES" or "NO" in a new line.
+
+Constraints
+
+1 <= N <= 100
+
+1 <= M <= 100
+
+1 <= Q <= 30
+
+1 <= x1,x2 <= N
+
+1 <= y1,y2 <= M
+
+1 <= Grid[i][j] <= 10^5
+
+Sample Input
+
+5
+
+5
+
+1 2 3 4 5
+
+6 7 8 9 1
+
+2 3 4 5 6
+
+7 8 9 1 2
+
+3 4 5 6 7
+
+2
+
+5 5 2 4
+
+3 2 1 1
+
+Sample output
+
+YES
+
+YES
+
+Explanation
+
+For the first query:
+
+u=(5,5), v=(2,4). So we are currently standing at (5,5) cell having value 7. We can take the following jumps: From (5,5) to (4,5) as adjacent cells. From (4,5) to (3,5) as adjacent cells. From (3,5) to (2,5) as adjacent cells. From (2,5) to (2,4) as adjacent cells. Hence you can jump from u to v in less than or equal to 4 jumps. The answer is YES.
+For the second query:
+
+u=(3,2), v=(1,1). You are currently standing at (3,2) cell having value 3. We can take the following jumps. From (3,2) to (1,1) as 3 is divisible by 1. Hence you can jump from u to v in less than 4 jumps. The answer is YES.
