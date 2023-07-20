@@ -1,0 +1,30 @@
+int32_t main()
+{
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+int n;
+cin>>n;
+if(n==-1)return -1;
+if(n==0)return 0;
+int maxi=INT_MIN;
+int mini=INT_MAX;
+for(int i=1;i<=n;i++)
+{
+for(int j=0;j<(1<<i);j+=2)
+{
+int left,right;
+cin>>left>>right;
+if(left!=-1 && right!=-1)
+{
+int x=__gcd(left,right);
+maxi=max(maxi,x);
+mini=min(mini,x);
+}
+}
+}
+// cout<<maxi<<" "<<mini<<endl;
+cout<<maxi-mini<<endl;
+return 0;
+}
+
+0
