@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int minChairs(vector<int>&S, vector<int>&E) {
+        map<int, int> map1;
+        int result = 0, count = 0;
+        for (int i = 0; i < S.size(); ++i) {
+            ++map1[S[i]];
+            --map1[E[i]];
+        }
+        for (auto onePair : map1) {
+            count += onePair.second;
+            result = max(result, count);
+        }
+        return result;
+    }   
+}
