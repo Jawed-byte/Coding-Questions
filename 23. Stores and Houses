@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> storesAndHouses(vector<int>&stores, vector<int>&houses) {
+        sort(stores.begin(),stores.end());
+        vector<int> result;
+        for (int house : houses) {
+            int index = lower_bound(stores.begin(),stores.end(), house) - stores.begin();
+            if (index == 0) result.emplace_back(stores[index]);
+            else if (index == stores.size()) result.emplace_back(stores[index - 1]);
+            else {
+                int distanceLeft = house - stores[index - 1];
+                int distanceRight = stores[index] - house;
+                if (distanceLeft == distanceRight || distanceLeft < distanceRight) result.emplace_back(stores[index - 1]);
+                else result.emplace_back(stores[index]);
+            }
+        }
+        return result;
+    }
+};
